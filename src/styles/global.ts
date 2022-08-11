@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    --maxWidth: 1120px;
+  }
+
 /* Box sizing rules */
 *,
 *::before,
@@ -33,6 +37,8 @@ html {
 
 /* Set core body defaults */
 body {
+  background-color: ${(props) => props.theme.colors["gray-100"]}; 
+  font-family: ${(props) => props.theme.fontFamily.roboto};
   text-rendering: optimizeSpeed;
   line-height: 1.5; /* It might need to be changed */
 }
