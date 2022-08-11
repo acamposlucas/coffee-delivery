@@ -1,22 +1,41 @@
 import styled from "styled-components";
 import { ShoppingCart } from "phosphor-react";
 
-export const Card = () => {
+interface Coffee {
+  id: number;
+  name: string;
+  description: string;
+  tags: string[];
+  image: string;
+  price: number;
+}
+interface CardProps extends Coffee {}
+
+export const Card = ({
+  id,
+  image,
+  name,
+  description,
+  tags,
+  price,
+}: CardProps) => {
   return (
     <CardContainer>
-      <img src="./src/assets/americano.png" alt="" />
+      <img src={image} alt="" />
       <div className="container">
         <div className="tags">
-          <span className="tag">Tradicional</span>
-          <span className="tag">Tradicional</span>
+          {tags.map((tag) => (
+            <span className="tag">{tag}</span>
+          ))}
         </div>
         <div>
-          <h3>Expresso Tradicional</h3>
-          <p>O tradicional café feito com água quente e grãos moídos</p>
+          <h3>{name}</h3>
+          <p>{description}</p>
         </div>
         <div className="inner-container">
           <strong>
-            <span>R$</span>9,90
+            <span>R$</span>
+            {price.toFixed(2)}
           </strong>
           <div className="actions">
             <div className="counter">
@@ -35,7 +54,7 @@ export const Card = () => {
   );
 };
 
-const CardContainer = styled.div`
+const CardContainer = styled.li`
   background-color: ${(props) => props.theme.colors["gray-200"]};
   border-top-right-radius: 32px;
   border-bottom-left-radius: 32px;

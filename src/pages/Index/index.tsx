@@ -1,10 +1,28 @@
 import styled from "styled-components";
 import { ShoppingCart, Timer, Package, Coffee } from "phosphor-react";
 import Banner from "../../assets/banner.png";
-import data from "../../../data.json";
 import { Card } from "../../components/Card";
+import { useEffect, useState } from "react";
+
+interface Coffee {
+  id: number;
+  name: string;
+  description: string;
+  tags: string[];
+  image: string;
+  price: number;
+}
 
 export const Index = () => {
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+
+  useEffect(() => {
+    fetch("/api/coffees")
+      .then((res) => res.json())
+      .then((data) => setCoffees(data.coffees))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <main>
       <Container>
@@ -49,9 +67,17 @@ export const Index = () => {
       <MenuContainer>
         <h2>Nossos cafés</h2>
         <ul role="list">
-          <li>
-            <Card />
-          </li>
+          {coffees.map((coffee) => (
+            <Card
+              key={coffee.id}
+              image={coffee.image}
+              id={coffee.id}
+              description={coffee.description}
+              name={coffee.name}
+              tags={coffee.tags}
+              price={coffee.price}
+            />
+          ))}
         </ul>
       </MenuContainer>
     </main>
@@ -141,6 +167,8 @@ const MenuContainer = styled.section`
   ul {
     display: grid;
     column-gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
     row-gap: 2.5rem;
     list-style-type: none;
   }
