@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { ShoppingCart, Timer, Package, Coffee } from "phosphor-react";
 import Banner from "../../assets/banner.png";
+import data from "../../../data.json";
+import { Card } from "../../components/Card";
 
 export const Index = () => {
   return (
@@ -44,6 +46,14 @@ export const Index = () => {
         </div>
         <img src={Banner} alt="" />
       </Container>
+      <MenuContainer>
+        <h2>Nossos cafés</h2>
+        <ul role="list">
+          <li>
+            <Card />
+          </li>
+        </ul>
+      </MenuContainer>
     </main>
   );
 };
@@ -52,8 +62,6 @@ const Container = styled.section`
   display: flex;
   gap: 3.5rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-inline: auto;
-  max-width: var(--maxWidth);
   padding-block: 6rem;
 
   .hero {
@@ -116,5 +124,24 @@ const Container = styled.section`
         }
       }
     }
+  }
+`;
+
+const MenuContainer = styled.section`
+  padding-block: 2rem;
+
+  h2 {
+    font-family: ${(props) => props.theme.fontFamily.baloo};
+    font-weight: ${(props) => props.theme.fontWeight.extraBold};
+    font-size: ${(props) => props.theme.fontSize["3xl"]};
+    color: ${(props) => props.theme.colors["black-800"]};
+    padding-block-end: 2rem;
+  }
+
+  ul {
+    display: grid;
+    column-gap: 2rem;
+    row-gap: 2.5rem;
+    list-style-type: none;
   }
 `;

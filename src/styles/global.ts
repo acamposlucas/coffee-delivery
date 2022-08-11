@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   :root {
     --maxWidth: 1120px;
+    --base: 1rem;
   }
 
 /* Box sizing rules */
@@ -41,6 +42,18 @@ body {
   font-family: ${(props) => props.theme.fontFamily.roboto};
   text-rendering: optimizeSpeed;
   line-height: 1.5; /* It might need to be changed */
+}
+
+/* Set core elements defaults */
+
+header, main, footer {
+  margin-inline: auto;
+  max-width: var(--maxWidth);
+  padding-inline: var(--base);
+}
+
+button {
+  cursor: pointer;
 }
 
 /* A elements that don't have a class get default styles */
