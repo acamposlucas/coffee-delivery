@@ -4,164 +4,149 @@ export const Container = styled.div`
   display: flex;
   gap: 2rem;
   padding-block: 2.5rem;
+  max-width: var(--maxWidth);
 `;
 
-export const FormSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  max-width: 640px;
+const BaseForm = styled.form`
+  box-sizing: border-box;
+  width: 40rem;
+`;
 
-  h2 {
-    color: ${(props) => props.theme.colors["black-900"]};
-    font-family: ${(props) => props.theme.fontFamily.baloo};
-    font-size: ${(props) => props.theme.fontSize.lg};
-    margin-block-end: 1rem;
+export const AddressInfoGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0.75rem;
+
+  label[for="cep"] {
+    grid-column: span 5;
+  }
+
+  label[for="rua"] {
+    grid-column: span 12;
+  }
+
+  label[for="numero"] {
+    grid-column: span 4;
+  }
+
+  label[for="complemento"] {
+    grid-column: span 8;
+  }
+
+  label[for="bairro"] {
+    grid-column: span 4;
+  }
+
+  label[for="cidade"] {
+    grid-column: span 6;
+  }
+
+  label[for="uf"] {
+    grid-column: span 2;
   }
 `;
 
-export const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+export const InputLabel = styled.label`
+  background-color: ${(props) => props.theme.colors["gray-400"]};
+  border: 1px solid ${(props) => props.theme.colors["gray-500"]};
+  border-radius: 4px;
+  color: ${(props) => props.theme.colors["black-700"]};
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  width: 100%;
+  position: relative;
 
-  --padding: 2.5rem;
+  &:focus-within {
+    border-color: ${(props) => props.theme.colors["yellow-700"]};
+  }
 
-  .address {
-    display: block;
-    border-radius: 6px;
-    overflow: hidden;
-    width: 100%;
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+  input {
+    background-color: transparent;
     border: 0;
-    background-color: ${(props) => props.theme.colors["gray-200"]};
-    padding-block: var(--padding);
-    padding-inline: var(--padding);
-    overflow: visible;
+    outline: none;
+    color: inherit;
 
-    fieldset[data-fieldset="address"] {
-      appearance: none;
-      display: contents;
-
-      legend {
-        align-items: flex-start;
-        color: ${(props) => props.theme.colors["black-700"]};
-        display: flex;
-        font-size: ${(props) => props.theme.fontSize.sm};
-        gap: 0.5rem;
-        grid-column: span 6;
-        margin-block-end: 1.5rem;
-
-        strong {
-          color: ${(props) => props.theme.colors["black-800"]};
-          display: contents;
-          font-size: ${(props) => props.theme.fontSize.base};
-        }
-      }
-
-      label {
-        &[for="cep"] {
-          grid-column: span 2;
-        }
-        &[for="street"] {
-          grid-column: span 6;
-        }
-        &[for="number"] {
-          grid-column: span 2;
-        }
-        &[for="secondaryAddress"] {
-          grid-column: span 4;
-        }
-        &[for="neighborhood"] {
-          grid-column: span 2;
-        }
-        &[for="city"] {
-          grid-column: span 3;
-        }
-        &[for="state"] {
-          grid-column: span 1;
-        }
-        input {
-          background-color: ${(props) => props.theme.colors["gray-300"]};
-          border: 1px solid ${(props) => props.theme.colors["gray-400"]};
-          border-radius: 4px;
-          outline: none;
-          padding-block: 0.75rem;
-          padding-inline: 0.75rem;
-          width: 100%;
-        }
-      }
+    &::placeholder {
+      color: ${(props) => props.theme.colors["black-800"]};
     }
   }
 
-  .payment {
+  span {
+    font-style: italic;
+    color: ${(props) => props.theme.colors["gray-700"]};
+    position: absolute;
+    right: 1.5rem;
+  }
+`;
+
+export const RadioLabel = styled.label`
+  align-items: center;
+  background-color: ${(props) => props.theme.colors["gray-400"]};
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: ${(props) => props.theme.colors["black-700"]};
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+  padding-block: 1rem;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors["gray-500"]};
+  }
+
+  &:focus-within {
+    background-color: ${(props) => props.theme.colors["purple-100"]};
+    border-color: ${(props) => props.theme.colors["purple-500"]};
+  }
+
+  input[type="radio"] {
+    appearance: none;
+  }
+
+  span {
+    text-transform: uppercase;
+    font-size: ${(props) => props.theme.fontSize.sm};
+  }
+`;
+
+export const RadioGroupGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+`;
+
+export const FormHeader = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-block-end: 2rem;
+
+  strong {
     display: block;
-    border-radius: 6px;
-    overflow: hidden;
-    width: 100%;
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    border: 0;
-    background-color: ${(props) => props.theme.colors["gray-200"]};
-    padding-block: var(--padding);
-    padding-inline: var(--padding);
-    overflow: visible;
+    gap: 0.5rem;
+    color: ${(props) => props.theme.colors["black-800"]};
 
-    fieldset[data-fieldset="payment"] {
-      appearance: none;
-      display: contents;
-
-      legend {
-        align-items: flex-start;
-        color: ${(props) => props.theme.colors["black-700"]};
-        display: flex;
-        font-size: ${(props) => props.theme.fontSize.sm};
-        gap: 0.5rem;
-        grid-column: span 6;
-        margin-block-end: 1.5rem;
-
-        strong {
-          color: ${(props) => props.theme.colors["black-800"]};
-          display: contents;
-          font-size: ${(props) => props.theme.fontSize.base};
-        }
-      }
-
-      label {
-        align-items: center;
-        background-color: ${(props) => props.theme.colors["gray-400"]};
-        border: 1px solid transparent;
-        border-radius: 6px;
-        color: ${(props) => props.theme.colors["black-700"]};
-        cursor: pointer;
-        display: flex;
-        justify-content: flex-start;
-        padding-inline-start: 1.125rem;
-        grid-column: span 2;
-        height: 50px;
-
-        &:hover {
-          background-color: ${(props) => props.theme.colors["gray-500"]};
-        }
-
-        input[type="radio"] {
-          appearance: none;
-
-          &:checked + label {
-            background-color: ${(props) => props.theme.colors["purple-100"]};
-            border-color: ${(props) => props.theme.colors["purple-900"]};
-          }
-        }
-
-        strong {
-          color: ${(props) => props.theme.colors["black-700"]};
-          font-size: ${(props) => props.theme.fontSize.sm};
-          text-transform: uppercase;
-          margin-inline-start: 12px;
-        }
-      }
+    span {
+      display: block;
+      color: ${(props) => props.theme.colors["black-700"]};
+      font-size: ${(props) => props.theme.fontSize.sm};
     }
   }
+`;
+
+export const CheckoutForm = styled(BaseForm)`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;
+
+export const InnerFormContainer = styled.div`
+  background-color: ${(props) => props.theme.colors["gray-200"]};
+  border-radius: 6px;
+  padding-inline: 2.5rem;
+  padding-block: 2.5rem;
+`;
+
+export const ConfirmPaymentForm = styled(BaseForm)`
+  border-radius: 6px 44px 6px 44px;
+  width: 100%;
 `;

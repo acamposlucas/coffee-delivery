@@ -5,80 +5,107 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
-import { Container, FormContainer, FormSection } from "./style";
+import { CheckoutTitle } from "../../styles/helpers";
+import {
+  ConfirmPaymentForm,
+  Container,
+  CheckoutForm,
+  FormHeader,
+  InputLabel,
+  AddressInfoGrid,
+  InnerFormContainer,
+  RadioGroupGrid,
+  RadioLabel,
+} from "./style";
+
+{
+  /* 
+
+<CreditCard size={16} color="#8047F8" />
+<Bank size={16} color="#8047F8" />
+<Money size={16} color="#8047F8" /> 
+*/
+}
 
 export const Checkout = () => {
   return (
     <main>
       <Container>
-        <FormSection>
-          <h2>Complete seu pedido</h2>
-          <FormContainer>
-            <div className="address">
-              <fieldset data-fieldset="address">
-                <legend>
-                  <MapPinLine size={22} color="#C47F17" />
-                  <strong>Endereço de entrega</strong>
-                  <br />
-                  Informe o endereço onde deseja receber seu pedido
-                </legend>
-                <label htmlFor="cep">
+        <div>
+          <CheckoutTitle>Complete seu pedido</CheckoutTitle>
+          <CheckoutForm>
+            <InnerFormContainer role="group" aria-label="endereço">
+              <FormHeader>
+                <MapPinLine size={22} color="#C47F17" />
+                <strong>
+                  Endereço de entrega{" "}
+                  <span>Informe o endereço onde deseja receber seu pedido</span>
+                </strong>
+              </FormHeader>
+              <AddressInfoGrid>
+                <InputLabel htmlFor="cep">
                   <input type="text" id="cep" placeholder="CEP" />
-                </label>
-                <label htmlFor="street">
-                  <input type="text" id="street" placeholder="Rua" />
-                </label>
-                <label htmlFor="number">
-                  <input type="text" id="number" placeholder="Número" />
-                </label>
-                <label htmlFor="secondaryAddress">
+                </InputLabel>
+                <InputLabel htmlFor="rua">
+                  <input type="text" id="rua" placeholder="Rua" />
+                </InputLabel>
+                <InputLabel htmlFor="numero">
+                  <input type="text" id="numero" placeholder="Número" />
+                </InputLabel>
+                <InputLabel htmlFor="complemento">
                   <input
                     type="text"
-                    id="secondaryAddress"
+                    id="complemento"
                     placeholder="Complemento"
                   />
-                </label>
-                <label htmlFor="neighborhood">
-                  <input type="text" id="neighborhood" placeholder="Bairro" />
-                </label>
-                <label htmlFor="city">
-                  <input type="text" id="city" placeholder="Cidade" />
-                </label>
-                <label htmlFor="state">
-                  <input type="text" id="state" placeholder="UF" />
-                  {/* <datalist id="uf">
-                  <option value="RJ" />
-                </datalist> */}
-                </label>
-              </fieldset>
-            </div>
-            <div className="payment">
-              <fieldset data-fieldset="payment">
-                <legend>
-                  <CurrencyDollar size={22} color="#8047F8" />
-                  <strong>Pagamento</strong>
-                  <br />O pagamento é feito na entrega. Escolha a forma que
-                  deseja pagar
-                </legend>
-                <label htmlFor="creditCard">
+                  <span>Opcional</span>
+                </InputLabel>
+                <InputLabel htmlFor="bairro">
+                  <input type="text" id="bairro" placeholder="Bairro" />
+                </InputLabel>
+                <InputLabel htmlFor="cidade">
+                  <input type="text" id="cidade" placeholder="Cidade" />
+                </InputLabel>
+                <InputLabel htmlFor="uf">
+                  <input type="text" id="uf" placeholder="UF" />
+                </InputLabel>
+              </AddressInfoGrid>
+            </InnerFormContainer>
+            <InnerFormContainer role="radiogroup" aria-label="pagamento">
+              <FormHeader>
+                <CurrencyDollar size={22} color="#8047F8" />
+                <strong>
+                  Pagamento{" "}
+                  <span>
+                    O pagamento é feito na entrega. Escolha a forma que deseja
+                    pagar
+                  </span>
+                </strong>
+              </FormHeader>
+              <RadioGroupGrid>
+                <RadioLabel id="credito">
+                  <input type="radio" name="metodoPagamento" id="credito" />
                   <CreditCard size={16} color="#8047F8" />
-                  <input type="radio" name="payment-method" id="creditCard" />
-                  <strong>Cartão de crédito</strong>
-                </label>
-                <label htmlFor="debitCard">
+                  <span>Cartão de crédito</span>
+                </RadioLabel>
+                <RadioLabel id="debito">
+                  <input type="radio" name="metodoPagamento" id="debito" />
                   <Bank size={16} color="#8047F8" />
-                  <input type="radio" name="payment-method" id="debitCard" />
-                  <strong>Cartão de débito</strong>
-                </label>
-                <label htmlFor="money">
+                  <span>Cartão de débito</span>
+                </RadioLabel>
+                <RadioLabel id="dinheiro">
+                  <input type="radio" name="metodoPagamento" id="dinheiro" />
                   <Money size={16} color="#8047F8" />
-                  <input type="radio" name="payment-method" id="money" />
-                  <strong>Dinheiro</strong>
-                </label>
-              </fieldset>
-            </div>
-          </FormContainer>
-        </FormSection>
+                  <span>Dinheiro</span>
+                </RadioLabel>
+              </RadioGroupGrid>
+            </InnerFormContainer>
+          </CheckoutForm>
+        </div>
+        <div>
+          <CheckoutTitle>Cafés selecionados</CheckoutTitle>
+          <ConfirmPaymentForm></ConfirmPaymentForm>
+        </div>
       </Container>
     </main>
   );
