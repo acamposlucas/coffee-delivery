@@ -5,6 +5,7 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
+import { CheckoutCard } from "../../components/CheckoutCard";
 import { CheckoutTitle } from "../../styles/helpers";
 import {
   ConfirmPaymentForm,
@@ -104,7 +105,11 @@ export const Checkout = () => {
         </div>
         <div>
           <CheckoutTitle>Cafés selecionados</CheckoutTitle>
-          <ConfirmPaymentForm></ConfirmPaymentForm>
+          <ConfirmPaymentForm>
+            <ul>
+              <CheckoutCard as={"li"} />
+            </ul>
+          </ConfirmPaymentForm>
         </div>
       </Container>
     </main>
