@@ -5,6 +5,7 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
+import { DefaultButton } from "../../components/Buttons/DefaultButton";
 import { CheckoutCard } from "../../components/CheckoutCard";
 import { CheckoutTitle } from "../../styles/helpers";
 import {
@@ -108,7 +109,20 @@ export const Checkout = () => {
           <ConfirmPaymentForm>
             <ul>
               <CheckoutCard as={"li"} />
+              <CheckoutCard as={"li"} />
             </ul>
+            <div className="bill">
+              <p>
+                Total de itens <span>R$ 29,70</span>
+              </p>
+              <p>
+                Entrega <span>R$ 3,50</span>
+              </p>
+              <strong>
+                Total <span>R$ 33,20</span>
+              </strong>
+            </div>
+            <DefaultButton>Confirmar pedido</DefaultButton>
           </ConfirmPaymentForm>
         </div>
       </Container>

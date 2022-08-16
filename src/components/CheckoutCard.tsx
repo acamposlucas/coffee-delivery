@@ -31,7 +31,6 @@ const Container = styled.div`
   strong.item-price {
     color: ${(props) => props.theme.colors["black-700"]};
     font-weight: ${(props) => props.theme.fontWeight.bold};
-    margin-inline-start: 1.875rem; // 30px
   }
 
   .inner-container {

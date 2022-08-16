@@ -147,6 +147,41 @@ export const InnerFormContainer = styled.div`
 `;
 
 export const ConfirmPaymentForm = styled(BaseForm)`
+  background-color: ${(props) => props.theme.colors["gray-200"]};
   border-radius: 6px 44px 6px 44px;
+  padding-block: 2.5rem;
+  padding-inline: 2.5rem;
   width: 100%;
+
+  ul {
+    li {
+      border-bottom: 1px solid ${(props) => props.theme.colors["gray-400"]};
+      padding-block-end: 1.25rem;
+      margin-block-end: 1.25rem;
+    }
+  }
+
+  .bill {
+    margin-block-end: 1.5rem;
+
+    p {
+      color: ${(props) => props.theme.colors["black-700"]};
+      display: flex;
+      font-size: ${(props) => props.theme.fontSize.sm};
+      justify-content: space-between;
+      margin-block-end: 0.75rem;
+
+      span {
+        font-size: ${(props) => props.theme.fontSize.base};
+      }
+    }
+
+    strong {
+      color: ${(props) => props.theme.colors["black-800"]};
+      display: flex;
+      font-size: ${(props) => props.theme.fontSize.lg};
+      font-weight: ${(props) => props.theme.fontWeight.bold};
+      justify-content: space-between;
+    }
+  }
 `;
