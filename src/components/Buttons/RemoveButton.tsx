@@ -24,4 +24,9 @@ const Button = styled.button`
   height: 32px;
   line-height: 32px;
   text-transform: uppercase;
+  transition: background-color 0.3s ease-in;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors["gray-500"]};
+  }
 `;
