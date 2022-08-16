@@ -1,5 +1,6 @@
 import { Trash } from "phosphor-react";
 import styled from "styled-components";
+import { CounterButton } from "./Buttons/CounterButton";
 import { RemoveButton } from "./Buttons/RemoveButton";
 
 export const CheckoutCard = ({ ...props }) => {
@@ -9,11 +10,7 @@ export const CheckoutCard = ({ ...props }) => {
       <div className="inner-container">
         <strong>Expresso Tradicional</strong>
         <div className="inner-container-cta">
-          <div className="inner-container-counter">
-            <button type="button">-</button>
-            <span>1</span>
-            <button type="button">+</button>
-          </div>
+          <CounterButton />
           <RemoveButton />
         </div>
       </div>
@@ -34,16 +31,7 @@ const Container = styled.div`
     .inner-container-cta {
       align-items: center;
       display: flex;
-
-      .inner-container-counter {
-        display: flex;
-        gap: 12px;
-
-        button {
-          background-color: transparent;
-          border: 0;
-        }
-      }
+      gap: 0.5rem;
     }
   }
 `;
