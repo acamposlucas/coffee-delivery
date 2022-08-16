@@ -6,6 +6,7 @@ import { Index } from "./pages/Index";
 import { Route, Routes } from "react-router-dom";
 import "./miragejs";
 import { Checkout } from "./pages/Checkout";
+import { Success } from "./pages/Success";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route index element={<Index />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="success" element={<Success />} />
       </Routes>
       <GlobalStyle />
     </ThemeProvider>
