@@ -1,4 +1,3 @@
-import { Trash } from "phosphor-react";
 import styled from "styled-components";
 import { CounterButton } from "./Buttons/CounterButton";
 import { RemoveButton } from "./Buttons/RemoveButton";
