@@ -1,5 +1,6 @@
 import { Trash } from "phosphor-react";
 import styled from "styled-components";
+import { RemoveButton } from "./Buttons/RemoveButton";
 
 export const CheckoutCard = ({ ...props }) => {
   return (
@@ -13,10 +14,7 @@ export const CheckoutCard = ({ ...props }) => {
             <span>1</span>
             <button type="button">+</button>
           </div>
-          <button type="button">
-            <Trash size={16} />
-            Remover
-          </button>
+          <RemoveButton />
         </div>
       </div>
       <strong>R$ 9,90</strong>
@@ -34,6 +32,9 @@ const Container = styled.div`
     flex-direction: column;
 
     .inner-container-cta {
+      align-items: center;
+      display: flex;
+
       .inner-container-counter {
         display: flex;
         gap: 12px;
