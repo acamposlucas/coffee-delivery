@@ -20,15 +20,6 @@ import {
   RadioLabel,
 } from "./style";
 
-{
-  /* 
-
-<CreditCard size={16} color="#8047F8" />
-<Bank size={16} color="#8047F8" />
-<Money size={16} color="#8047F8" /> 
-*/
-}
-
 export const Checkout = () => {
   return (
     <main>
@@ -122,7 +113,7 @@ export const Checkout = () => {
                 Total <span>R$ 33,20</span>
               </strong>
             </div>
-            <DefaultButton>Confirmar pedido</DefaultButton>
+            <DefaultButton type="submit">Confirmar pedido</DefaultButton>
           </ConfirmPaymentForm>
         </div>
       </Container>

@@ -21,8 +21,8 @@ const Button = styled.button`
   gap: 4px;
   justify-content: center;
   padding-inline: 0.5rem;
-  height: 32px;
-  line-height: 32px;
+  height: 40px;
+  line-height: 40px;
   text-transform: uppercase;
   transition: background-color 0.3s ease-in;
 

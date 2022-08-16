@@ -45,11 +45,11 @@ const ButtonContainer = styled.div`
   color: ${(props) => props.theme.colors["black-900"]};
   display: flex;
   font-size: ${(props) => props.theme.fontSize.xs};
-  gap: 4px;
+  gap: 0.5rem;
   justify-content: center;
-  padding-inline: 0.5rem;
-  height: 32px;
-  line-height: 32px;
+  padding-inline: 0.75rem;
+  height: 40px;
+  line-height: 40px;
   text-transform: uppercase;
 
   button {

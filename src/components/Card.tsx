@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ShoppingCart } from "phosphor-react";
+import { CounterButton } from "./Buttons/CounterButton";
 
 interface Coffee {
   id: number;
@@ -38,11 +39,7 @@ export const Card = ({
             {price.toFixed(2)}
           </strong>
           <div className="actions">
-            <div className="counter">
-              <button type="button">-</button>
-              <span>1</span>
-              <button type="button">+</button>
-            </div>
+            <CounterButton />
             <button type="button" className="addToCart">
               <span className="visually-hidden">Adicionar no carrinho</span>
               <ShoppingCart size={22} color="#ffffff" weight="fill" />
@@ -147,17 +144,6 @@ const CardContainer = styled.li`
           gap: 0.5rem;
           padding-block: 0.5rem;
           padding-inline: 0.5rem;
-
-          button {
-            background-color: transparent;
-            border: 0;
-            color: ${(props) => props.theme.colors["purple-900"]};
-          }
-
-          span {
-            color: ${(props) => props.theme.colors["black-900"]};
-            width: 20px;
-          }
         }
 
         .addToCart {
@@ -167,7 +153,8 @@ const CardContainer = styled.li`
           border-radius: 6px;
           display: flex;
           justify-content: center;
-          padding-block: 0.5rem;
+          height: 40px;
+          line-height: 40px;
           padding-inline: 0.5rem;
           transition: background-color 0.3s ease-in;
 
