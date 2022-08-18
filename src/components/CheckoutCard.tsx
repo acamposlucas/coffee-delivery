@@ -1,14 +1,54 @@
+import { Minus, Plus, Trash } from "phosphor-react";
 import styled from "styled-components";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 import { RemoveButton } from "./Buttons/RemoveButton";
+import { ButtonContainer, IconButton } from "./Card";
 
-export const CheckoutCard = ({ as }: { as?: string }) => {
+interface Coffee {
+  id: number;
+  name: string;
+  description: string;
+  tags: string[];
+  image: string;
+  price: number;
+}
+
+export const CheckoutCard = ({ as, id }: { as?: string, id: number }) => {
+
+  const { coffees, decreaseCartQuantity, removeFromCart, increaseCartQuantity, getItemQuantity} = useShoppingCart();
+
+    let item = coffees.find((item) => item.id === id)
+    if(item === null) return null;
+ 
   return (
     <Container as={as}>
-      <img src="public\assets\americano.png" alt="" />
+      <img src={item.image} alt={item.name} />
       <div className="inner-container">
-        <strong>Expresso Tradicional</strong>
+        <strong>{item.name}</strong>
         <div className="inner-container-cta">
-          <RemoveButton />
+          <ButtonContainer>
+            <button
+              type="button"
+              onClick={() => decreaseCartQuantity(id)}
+              aria-label="subtrair item"
+              aria-labelledby="counter"
+            >
+              <Minus size={12} color="#8047F8" />
+            </button>
+            <span id="counter">{getItemQuantity(id)}</span>
+            <button
+              type="button"
+              onClick={() => increaseCartQuantity(id)}
+              aria-label="adicionar item"
+              aria-labelledby="counter"
+            >
+              <Plus size={12} color="#8047F8" />
+            </button>
+          </ButtonContainer>
+          <button type="button" onClick={() => removeFromCart(id)}>
+            <Trash size={16} color="#8047F8" />
+            Remover
+          </button>
         </div>
       </div>
       <strong className="item-price">R$ 9,90</strong>

@@ -185,7 +185,7 @@ const CardContainer = styled.li`
   }
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme.colors["gray-400"]};
   border-radius: 6px;
@@ -213,7 +213,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const IconButton = styled.button`
+export const IconButton = styled.button`
   align-items: center;
   background-color: ${(props) => props.theme.colors["purple-900"]};
   border: 0;

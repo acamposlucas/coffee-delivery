@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { Coffee } from "../interfaces/ICoffee";
 
 
 type ShoppingCartContext = {
@@ -6,6 +7,9 @@ type ShoppingCartContext = {
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
+  cartQuantity: number;
+  cartItems: CartItem[];
+  coffees: Coffee[];
 };
 
 type CartItem = {
@@ -22,6 +26,19 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: { children: ReactNode}) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   
+  
+  const [coffees, setCoffees] = useState<Coffee[]>([]);
+
+  useEffect(() => {
+    fetch("/api/coffees")
+      .then((res) => res.json())
+      .then((data) => setCoffees(data.coffees))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const cartQuantity = cartItems.reduce(
+    (quantity, item) => item.quantity + quantity, 0)
+
   function getItemQuantity(id: number) {
     return cartItems.find(item => item.id === id)?.quantity || 0
   }
@@ -57,7 +74,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode}) {
       }
     })
   }
-  
+
   function removeFromCart(id: number) {
     setCartItems(currItems => {
       return currItems.filter(item => item.id !== id)
@@ -65,7 +82,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode}) {
   }
 
   return (
-    <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart }}>
+    <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, coffees }}>
       {children}
     </ShoppingCartContext.Provider>
   )

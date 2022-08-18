@@ -3,6 +3,7 @@ import { ShoppingCart, Timer, Package, Coffee } from "phosphor-react";
 import Banner from "../../assets/banner.png";
 import { Card } from "../../components/Card";
 import { useEffect, useState } from "react";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
 
 interface Coffee {
   id: number;
@@ -14,14 +15,7 @@ interface Coffee {
 }
 
 export const Index = () => {
-  const [coffees, setCoffees] = useState<Coffee[]>([]);
-
-  useEffect(() => {
-    fetch("/api/coffees")
-      .then((res) => res.json())
-      .then((data) => setCoffees(data.coffees))
-      .catch((err) => console.log(err));
-  }, []);
+  const { coffees } = useShoppingCart();
 
   return (
     <main>

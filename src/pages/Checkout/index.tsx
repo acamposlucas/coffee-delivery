@@ -7,6 +7,7 @@ import {
 } from "phosphor-react";
 import { DefaultButton } from "../../components/Buttons/DefaultButton";
 import { CheckoutCard } from "../../components/CheckoutCard";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { CheckoutTitle } from "../../styles/helpers";
 import {
   ConfirmPaymentForm,
@@ -21,6 +22,7 @@ import {
 } from "./style";
 
 export const Checkout = () => {
+  const { cartItems } = useShoppingCart();
   return (
     <main>
       <Container>
@@ -99,8 +101,9 @@ export const Checkout = () => {
           <CheckoutTitle>Cafés selecionados</CheckoutTitle>
           <ConfirmPaymentForm>
             <ul>
-              <CheckoutCard as={"li"} />
-              <CheckoutCard as={"li"} />
+              {cartItems.map((item) => (
+                <CheckoutCard key={item.id} {...item}/>
+              ))}
             </ul>
             <div className="bill">
               <p>
