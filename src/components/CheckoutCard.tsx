@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { CounterButton } from "./Buttons/CounterButton";
 import { RemoveButton } from "./Buttons/RemoveButton";
 
 export const CheckoutCard = ({ as }: { as?: string }) => {
@@ -9,7 +8,6 @@ export const CheckoutCard = ({ as }: { as?: string }) => {
       <div className="inner-container">
         <strong>Expresso Tradicional</strong>
         <div className="inner-container-cta">
-          <CounterButton />
           <RemoveButton />
         </div>
       </div>

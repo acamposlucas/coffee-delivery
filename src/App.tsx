@@ -7,18 +7,21 @@ import { Route, Routes } from "react-router-dom";
 import "./miragejs";
 import { Checkout } from "./pages/Checkout";
 import { Success } from "./pages/Success";
+import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 function App() {
   return (
-    <ThemeProvider theme={defaultTheme}>
-      <Header />
-      <Routes>
-        <Route index element={<Index />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="success" element={<Success />} />
-      </Routes>
-      <GlobalStyle />
-    </ThemeProvider>
+    <ShoppingCartProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <Header />
+        <Routes>
+          <Route index element={<Index />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="success" element={<Success />} />
+        </Routes>
+        <GlobalStyle />
+      </ThemeProvider>
+    </ShoppingCartProvider>
   );
 }
 

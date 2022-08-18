@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ShoppingCart } from "phosphor-react";
-import { CounterButton } from "./Buttons/CounterButton";
+import { Minus, Plus, ShoppingCart } from "phosphor-react";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 interface Coffee {
   id: number;
@@ -20,9 +20,13 @@ export const Card = ({
   tags,
   price,
 }: CardProps) => {
+  const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart } = useShoppingCart();
+
+  const quantity = getItemQuantity(id);
+
   return (
     <CardContainer>
-      <img src={image} alt="" />
+      <img src={image} alt={name} />
       <div className="container">
         <div className="tags">
           {tags.map((tag) => (
@@ -39,8 +43,26 @@ export const Card = ({
             {price.toFixed(2)}
           </strong>
           <div className="actions">
-            <CounterButton />
-            <button type="button" className="addToCart">
+          <ButtonContainer>
+              <button
+                type="button"
+                onClick={() => decreaseCartQuantity(id)}
+                aria-label="subtrair item"
+                aria-labelledby="counter"
+              >
+                <Minus size={12} color="#8047F8" />
+              </button>
+              <span id="counter">{quantity}</span>
+              <button
+                type="button"
+                onClick={() => increaseCartQuantity(id)}
+                aria-label="adicionar item"
+                aria-labelledby="counter"
+              >
+                <Plus size={12} color="#8047F8" />
+              </button>
+          </ButtonContainer>
+            <button type="button" className="addToCart" onClick={() => increaseCartQuantity(id)}>
               <span className="visually-hidden">Adicionar no carrinho</span>
               <ShoppingCart size={22} color="#ffffff" weight="fill" />
             </button>
@@ -162,6 +184,34 @@ const CardContainer = styled.li`
             background-color: ${(props) => props.theme.colors["purple-500"]};
           }
         }
+      }
+    }
+  }
+`;
+
+const ButtonContainer = styled.div`
+  align-items: center;
+  background-color: ${(props) => props.theme.colors["gray-400"]};
+  border-radius: 6px;
+  color: ${(props) => props.theme.colors["black-900"]};
+  display: flex;
+  font-size: ${(props) => props.theme.fontSize.xs};
+  gap: 0.5rem;
+  justify-content: center;
+  padding-inline: 0.75rem;
+  height: 40px;
+  line-height: 40px;
+  text-transform: uppercase;
+
+  button {
+    align-items: center;
+    border: 0;
+    display: flex;
+    justify-content: center;
+
+    svg {
+      &:hover {
+        fill: red;
       }
     }
   }
