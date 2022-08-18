@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Minus, Plus, ShoppingCart } from "phosphor-react";
+import { Minus, Plus, ShoppingCart, Trash } from "phosphor-react";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
 interface Coffee {
@@ -43,29 +43,42 @@ export const Card = ({
             {price.toFixed(2)}
           </strong>
           <div className="actions">
-          <ButtonContainer>
-              <button
-                type="button"
-                onClick={() => decreaseCartQuantity(id)}
-                aria-label="subtrair item"
-                aria-labelledby="counter"
-              >
-                <Minus size={12} color="#8047F8" />
-              </button>
-              <span id="counter">{quantity}</span>
-              <button
-                type="button"
-                onClick={() => increaseCartQuantity(id)}
-                aria-label="adicionar item"
-                aria-labelledby="counter"
-              >
-                <Plus size={12} color="#8047F8" />
-              </button>
-          </ButtonContainer>
-            <button type="button" className="addToCart" onClick={() => increaseCartQuantity(id)}>
-              <span className="visually-hidden">Adicionar no carrinho</span>
-              <ShoppingCart size={22} color="#ffffff" weight="fill" />
-            </button>
+            {
+              quantity > 0 ? (
+                <>
+                  <ButtonContainer>
+                    <button
+                      type="button"
+                      onClick={() => decreaseCartQuantity(id)}
+                      aria-label="subtrair item"
+                      aria-labelledby="counter"
+                    >
+                      <Minus size={12} color="#8047F8" />
+                    </button>
+                    <span id="counter">{quantity}</span>
+                    <button
+                      type="button"
+                      onClick={() => increaseCartQuantity(id)}
+                      aria-label="adicionar item"
+                      aria-labelledby="counter"
+                    >
+                      <Plus size={12} color="#8047F8" />
+                    </button>
+                  </ButtonContainer>
+                  <IconButton type="button" onClick={() => removeFromCart(id)}>
+                    <span className="visually-hidden">Remover do carrinho</span>
+                    <Trash size={22} color="#ffffff" weight="fill"/>
+                  </IconButton>
+                </>
+              ) : (
+                <IconButton type="button" onClick={() => increaseCartQuantity(id)}>
+                  <span className="visually-hidden">Adicionar no carrinho</span>
+                  <ShoppingCart size={22} color="#ffffff" weight="fill" />
+                </IconButton>
+
+              )
+            }
+          
           </div>
         </div>
       </div>
@@ -167,23 +180,6 @@ const CardContainer = styled.li`
           padding-block: 0.5rem;
           padding-inline: 0.5rem;
         }
-
-        .addToCart {
-          align-items: center;
-          background-color: ${(props) => props.theme.colors["purple-900"]};
-          border: 0;
-          border-radius: 6px;
-          display: flex;
-          justify-content: center;
-          height: 40px;
-          line-height: 40px;
-          padding-inline: 0.5rem;
-          transition: background-color 0.3s ease-in;
-
-          &:hover {
-            background-color: ${(props) => props.theme.colors["purple-500"]};
-          }
-        }
       }
     }
   }
@@ -216,3 +212,21 @@ const ButtonContainer = styled.div`
     }
   }
 `;
+
+const IconButton = styled.button`
+  align-items: center;
+  background-color: ${(props) => props.theme.colors["purple-900"]};
+  border: 0;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  line-height: 40px;
+  padding-inline: 0.5rem;
+  transition: background-color 0.3s ease-in;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors["purple-500"]};
+  }
+`;
+
