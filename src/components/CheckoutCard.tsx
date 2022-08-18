@@ -1,6 +1,7 @@
 import { Minus, Plus, Trash } from "phosphor-react";
 import styled from "styled-components";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { formatCurrency } from "../utilities/formatCurrency";
 import { RemoveButton } from "./Buttons/RemoveButton";
 import { ButtonContainer, IconButton } from "./Card";
 
@@ -13,7 +14,7 @@ interface Coffee {
   price: number;
 }
 
-export const CheckoutCard = ({ as, id }: { as?: string, id: number }) => {
+export const CheckoutCard = ({ as, id, quantity }: { as?: string, id: number, quantity: number }) => {
 
   const { coffees, decreaseCartQuantity, removeFromCart, increaseCartQuantity, getItemQuantity} = useShoppingCart();
 
@@ -51,7 +52,7 @@ export const CheckoutCard = ({ as, id }: { as?: string, id: number }) => {
           </button>
         </div>
       </div>
-      <strong className="item-price">R$ 9,90</strong>
+      <strong className="item-price">{formatCurrency(item.price * quantity)}</strong>
     </Container>
   );
 };

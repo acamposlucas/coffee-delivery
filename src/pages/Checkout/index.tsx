@@ -9,6 +9,7 @@ import { DefaultButton } from "../../components/Buttons/DefaultButton";
 import { CheckoutCard } from "../../components/CheckoutCard";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { CheckoutTitle } from "../../styles/helpers";
+import { formatCurrency } from "../../utilities/formatCurrency";
 import {
   ConfirmPaymentForm,
   Container,
@@ -22,7 +23,18 @@ import {
 } from "./style";
 
 export const Checkout = () => {
-  const { cartItems } = useShoppingCart();
+  const { cartItems, coffees } = useShoppingCart();
+
+  const totalItemsCost = 
+    cartItems.reduce((total, cartItem) => {
+      const item = coffees.find(i => i.id === cartItem.id)
+      return total + (item?.price || 0) * cartItem.quantity
+    }, 0);
+
+  const DELIVERY_COST = 3;
+
+  const finalCost = totalItemsCost + DELIVERY_COST;
+
   return (
     <main>
       <Container>
@@ -107,13 +119,13 @@ export const Checkout = () => {
             </ul>
             <div className="bill">
               <p>
-                Total de itens <span>R$ 29,70</span>
+                Total de itens <span>{formatCurrency(totalItemsCost)}</span>
               </p>
               <p>
-                Entrega <span>R$ 3,50</span>
+                Entrega <span>{formatCurrency(DELIVERY_COST)}</span>
               </p>
               <strong>
-                Total <span>R$ 33,20</span>
+                Total <span>{formatCurrency(finalCost)}</span>
               </strong>
             </div>
             <DefaultButton type="submit">Confirmar pedido</DefaultButton>
