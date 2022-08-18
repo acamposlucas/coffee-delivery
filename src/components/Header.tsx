@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { ShoppingCart, MapPin } from "phosphor-react";
+import { MapPin } from "phosphor-react";
 import Logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
+import { ShoppingCart } from "./ShoppingCart";
 
 export const Header = () => {
-  const cartItemAmount = 0;
-
   return (
     <header>
       <HeaderContainer>
@@ -17,18 +16,7 @@ export const Header = () => {
             <MapPin size={22} weight="fill" />
             Porto Alegre, RS
           </span>
-          <Link to={"/checkout"}>
-            <span className="visually-hidden">Ver Carrinho</span>
-            <ShoppingCart color="#C47F17" size={22} weight="fill" />
-            {cartItemAmount > 0 ? (
-              <span
-                className="cartItemAmount"
-                aria-label="Quantidade de itens no carrinho"
-              >
-                {cartItemAmount}
-              </span>
-            ) : null}
-          </Link>
+          <ShoppingCart />
         </div>
       </HeaderContainer>
     </header>
