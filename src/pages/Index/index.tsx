@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { ShoppingCart, Timer, Package, Coffee } from "phosphor-react";
 import Banner from "../../assets/banner.png";
 import { Card } from "../../components/Card";
-import { useEffect, useState } from "react";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 
 interface Coffee {

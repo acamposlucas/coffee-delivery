@@ -6,7 +6,7 @@ import {
   Money,
 } from "phosphor-react";
 import { DefaultButton } from "../../components/Buttons/DefaultButton";
-import { CheckoutCard } from "../../components/CheckoutCard";
+import { CartCard } from "../../components/CartCard/";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { CheckoutTitle } from "../../styles/helpers";
 import { formatCurrency } from "../../utilities/formatCurrency";
@@ -114,7 +114,7 @@ export const Checkout = () => {
           <ConfirmPaymentForm>
             <ul>
               {cartItems.map((item) => (
-                <CheckoutCard key={item.id} {...item}/>
+                <CartCard key={item.id} {...item}/>
               ))}
             </ul>
             <div className="bill">

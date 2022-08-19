@@ -2,9 +2,13 @@ import { Trash } from "phosphor-react";
 import styled from "styled-components";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 
-export const RemoveButton = ({...props}) => {
+type RemoveButtonProps = {
+  onClick: any;
+}
+
+export const RemoveButton = ({ onClick }: RemoveButtonProps) => {
   return (
-    <Button type="button" {...props}>
+    <Button type="button" onClick={onClick}>
       <Trash size={16} color="#8047F8" />
       Remover
     </Button>
