@@ -5,10 +5,10 @@ export const Success = () => {
   return (
     <main>
       <Container>
-        <header>
+
           <h2>Uhu! Pedido confirmado</h2>
           <p>Agora é só aguardar que logo o café chegará até você</p>
-        </header>
+
         <section>
           <DeliveryStatus>
             <article>
@@ -41,7 +41,7 @@ export const Success = () => {
               </p>
             </article>
           </DeliveryStatus>
-          <img src="" alt="" />
+          <img src="./assets/delivery.svg" alt="" />
         </section>
       </Container>
     </main>
