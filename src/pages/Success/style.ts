@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IconContainer } from "../../styles/components/IconContainer";
 
 export const Container = styled.section`
   margin-block-start: 5rem;
@@ -21,6 +22,18 @@ export const Container = styled.section`
     width: 100%;
   }
 `;
+
+
+// export const IconContainer = styled.div`
+//   align-items: center;
+//   border-radius: 32px;
+//   display: flex;
+//   justify-content: center;
+//   height: 32px;
+//   width: 32px;
+
+//   background-color: ${(props) => props.theme.colors["purple-500"]};
+// `;
 
 export const DeliveryStatus = styled.div`
   background-color: ${props => props.theme.colors["gray-100"]};
@@ -54,19 +67,30 @@ export const DeliveryStatus = styled.div`
     gap: 0.75rem;
     color: ${props => props.theme.colors["black-700"]};
 
-    strong {
-      font-weight: ${props => props.theme.fontWeight.bold};
+    &:nth-child(1) {
+      ${IconContainer} {
+        background-color: ${props => props.theme.colors["purple-500"]};
+      }
+    }
+
+    &:nth-child(2) {
+      ${IconContainer} {
+        background-color: ${props => props.theme.colors["yellow-400"]};
+      }
+    }
+
+    &:nth-child(3) {
+      ${IconContainer} {
+        background-color: ${props => props.theme.colors["yellow-700"]};
+      }
+    }
+
+
+    p {
+      strong {
+        font-weight: ${props => props.theme.fontWeight.bold};
+      }
     }
   }
 `;
 
-export const IconContainer = styled.div`
-  align-items: center;
-  border-radius: 32px;
-  display: flex;
-  justify-content: center;
-  height: 32px;
-  width: 32px;
-
-  background-color: ${(props) => props.theme.colors["purple-500"]};
-`;

@@ -1,5 +1,6 @@
 import { Clock, CurrencyDollar, MapPin } from "phosphor-react";
-import { Container, DeliveryStatus, IconContainer } from "./style";
+import { IconContainer } from "../../styles/components/IconContainer";
+import { Container, DeliveryStatus } from "./style";
 
 export const Success = () => {
   return (
