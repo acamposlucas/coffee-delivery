@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 
 type RemoveButtonProps = {
-  onClick: any;
+  id: number;
 }
 
-export const RemoveButton = ({ onClick }: RemoveButtonProps) => {
+export const RemoveButton = ({ id }: RemoveButtonProps) => {
+  const { removeFromCart } = useShoppingCart();
   return (
-    <Button type="button" onClick={onClick}>
+    <Button type="button" onClick={() => removeFromCart(id)}>
       <Trash size={16} color="#8047F8" />
       Remover
     </Button>

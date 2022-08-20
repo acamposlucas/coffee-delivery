@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Minus, Plus, ShoppingCart, Trash } from "phosphor-react";
+import { ShoppingCart, Trash } from "phosphor-react";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-
+import { CounterButton } from "./Buttons/CounterButton";
 interface Coffee {
   id: number;
   name: string;
@@ -30,7 +30,7 @@ export const Card = ({
       <div className="container">
         <div className="tags">
           {tags.map((tag) => (
-            <span className="tag">{tag}</span>
+            <span className="tag" aria-hidden="true">{tag}</span>
           ))}
         </div>
         <div>
@@ -46,39 +46,19 @@ export const Card = ({
             {
               quantity > 0 ? (
                 <>
-                  <ButtonContainer>
-                    <button
-                      type="button"
-                      onClick={() => decreaseCartQuantity(id)}
-                      aria-label="subtrair item"
-                      aria-labelledby="counter"
-                    >
-                      <Minus size={12} color="#8047F8" />
-                    </button>
-                    <span id="counter">{quantity}</span>
-                    <button
-                      type="button"
-                      onClick={() => increaseCartQuantity(id)}
-                      aria-label="adicionar item"
-                      aria-labelledby="counter"
-                    >
-                      <Plus size={12} color="#8047F8" />
-                    </button>
-                  </ButtonContainer>
                   <IconButton type="button" onClick={() => removeFromCart(id)}>
                     <span className="visually-hidden">Remover do carrinho</span>
                     <Trash size={22} color="#ffffff" weight="fill"/>
                   </IconButton>
+                  <CounterButton quantity={quantity} id={id} />
                 </>
               ) : (
                 <IconButton type="button" onClick={() => increaseCartQuantity(id)}>
                   <span className="visually-hidden">Adicionar no carrinho</span>
                   <ShoppingCart size={22} color="#ffffff" weight="fill" />
                 </IconButton>
-
               )
             }
-          
           </div>
         </div>
       </div>
@@ -152,18 +132,6 @@ const CardContainer = styled.li`
       justify-content: space-between;
       margin-block-start: 1rem;
       width: 100%;
-
-      strong {
-        color: ${(props) => props.theme.colors["black-700"]};
-        font-family: ${(props) => props.theme.fontFamily.baloo};
-        font-size: ${(props) => props.theme.fontSize.xl};
-
-        span {
-          font-family: ${(props) => props.theme.fontFamily.roboto};
-          font-size: ${(props) => props.theme.fontSize.xs};
-          margin-inline-end: 4px;
-        }
-      }
 
       .actions {
         align-items: center;

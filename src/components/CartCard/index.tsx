@@ -1,6 +1,7 @@
 import { Minus, Plus, Trash } from "phosphor-react";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { formatCurrency } from "../../utilities/formatCurrency";
+import { CounterButton } from "../Buttons/CounterButton";
 import { RemoveButton } from "../Buttons/RemoveButton";
 import { ButtonContainer } from "../Card";
 import { CartCardContainer, InnerContainer } from "./style";
@@ -28,7 +29,8 @@ export const CartCard = ({ as, id, quantity }: { as?: string, id: number, quanti
         <div className="InnerContainer__Content">
           <strong>{item.name}</strong>
           <div className="InnerContainer__CTA">
-            <ButtonContainer>
+            <CounterButton quantity={quantity} id={id} />
+            {/* <ButtonContainer>
               <button
                 type="button"
                 onClick={() => decreaseCartQuantity(id)}
@@ -46,8 +48,8 @@ export const CartCard = ({ as, id, quantity }: { as?: string, id: number, quanti
               >
                 <Plus size={12} color="#8047F8" />
               </button>
-            </ButtonContainer>
-            <RemoveButton onClick={() => removeFromCart(id)} />
+            </ButtonContainer> */}
+            <RemoveButton id={id} />
           </div>
         </div>
       </InnerContainer>

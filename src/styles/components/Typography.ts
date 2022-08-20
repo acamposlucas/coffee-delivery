@@ -6,7 +6,7 @@ export type HeadingProps = {
   size?: keyof typeof defaultTheme.fontSize;
   weight?: keyof typeof defaultTheme.fontWeight;
   level?: 1 | 2 | 3 | 4 | 5 | 6;
-  lineHeight: string | number;
+  lineHeight?: string | number;
 };
 
 export const Heading = styled('h1').attrs<HeadingProps>(({ level }) => ({
@@ -26,7 +26,7 @@ export type TextProps = {
   size?: keyof typeof defaultTheme.fontSize;
   weight?: keyof typeof defaultTheme.fontWeight;
   variant?: string;
-  lineHeight: string | number;
+  lineHeight?: string | number;
 };
 
 export const Text = styled('p').attrs<TextProps>(({ variant }) => ({
