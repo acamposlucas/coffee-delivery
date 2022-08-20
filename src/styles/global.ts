@@ -49,7 +49,7 @@ body {
 header, main, footer {
   margin-inline: auto;
   max-width: var(--maxWidth);
-  padding-inline: var(--base);
+  /* padding-inline: var(--base); */
 }
 
 button {

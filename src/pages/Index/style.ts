@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IconContainer } from "../../styles/components/IconContainer";
+import { Heading } from "../../styles/components/Typography";
 
 export const Container = styled.section`
   display: flex;
@@ -14,11 +15,11 @@ export const Container = styled.section`
     gap: 4rem;
 
     .hero-container {
-      h1 {
-        color: ${(props) => props.theme.colors["black-900"]};
+      ${Heading} {
+        /* color: ${(props) => props.theme.colors["black-900"]};
         font-family: ${(props) => props.theme.fontFamily.baloo};
         font-size: ${(props) => props.theme.fontSize["5xl"]};
-        font-weight: ${(props) => props.theme.fontWeight.extraBold};
+        font-weight: ${(props) => props.theme.fontWeight.extraBold}; */
         margin-block-end: 1rem;
       }
 

@@ -5,6 +5,7 @@ import { Card } from "../../components/Card";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { Container, MenuContainer } from "./style";
 import { IconContainer } from "../../styles/components/IconContainer";
+import { Heading } from "../../styles/components/Typography";
 
 interface Coffee {
   id: number;
@@ -23,7 +24,8 @@ export const Index = () => {
       <Container>
         <div className="hero">
           <div className="hero-container">
-            <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+            {/* <h1>Encontre o café perfeito para qualquer hora do dia</h1> */}
+            <Heading level={1} color="black-900" fontWeight="extraBold" size="5xl" lineHeight={1.3}>Encontre o café perfeito para qualquer hora do dia</Heading>
             <p>
               Com o Coffee Delivery você recebe seu café onde estiver, a
               qualquer hora.
