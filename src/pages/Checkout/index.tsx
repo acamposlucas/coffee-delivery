@@ -21,6 +21,29 @@ import {
   RadioGroupGrid,
   RadioLabel,
 } from "./style";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  cep: yup.string().required(),
+  rua: yup.string().required(),
+  numero: yup.number().positive().integer().required(),
+  complemento: yup.string(),
+  bairro: yup.string().required(),
+  cidade: yup.string().required(),
+  uf: yup.string().max(2).required()
+});
+
+interface IFormInputs {
+  cep: number,
+  rua: string,
+  numero: number,
+  complemento: string,
+  bairro: string,
+  cidade: string,
+  uf: string,
+}
 
 export const Checkout = () => {
   const { cartItems, coffees } = useShoppingCart();
@@ -30,17 +53,23 @@ export const Checkout = () => {
       const item = coffees.find(i => i.id === cartItem.id)
       return total + (item?.price || 0) * cartItem.quantity
     }, 0);
-
   const DELIVERY_COST = 3;
-
   const finalCost = totalItemsCost + DELIVERY_COST;
+
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
+    resolver: yupResolver(schema),
+  });
+
+  const handleSubmitForm = (data: IFormInputs) => {
+    console.log(data);
+  }
 
   return (
     <main>
       <Container>
         <div>
           <CheckoutTitle>Complete seu pedido</CheckoutTitle>
-          <CheckoutForm>
+          <CheckoutForm onSubmit={handleSubmit(handleSubmitForm)}>
             <InnerFormContainer role="group" aria-label="endereço">
               <FormHeader>
                 <MapPinLine size={22} color="#C47F17" />
@@ -51,30 +80,38 @@ export const Checkout = () => {
               </FormHeader>
               <AddressInfoGrid>
                 <InputLabel htmlFor="cep">
-                  <input type="text" id="cep" placeholder="CEP" />
+                  <input {...register("cep")} type="text" name="cep" id="cep" placeholder="CEP" />
+                  <span>{errors.cep?.message}</span>
                 </InputLabel>
                 <InputLabel htmlFor="rua">
-                  <input type="text" id="rua" placeholder="Rua" />
+                  <input
+                   {...register("rua")} type="text" name="rua" id="rua" placeholder="Rua" />
                 </InputLabel>
                 <InputLabel htmlFor="numero">
-                  <input type="text" id="numero" placeholder="Número" />
+                  <input
+                   {...register("numero")} type="text" name="numero" id="numero" placeholder="Número" />
                 </InputLabel>
                 <InputLabel htmlFor="complemento">
                   <input
+                   {...register("complemento")}
                     type="text"
+                    name="complemento"
                     id="complemento"
                     placeholder="Complemento"
                   />
                   <span>Opcional</span>
                 </InputLabel>
                 <InputLabel htmlFor="bairro">
-                  <input type="text" id="bairro" placeholder="Bairro" />
+                  <input
+                   {...register("bairro")} type="text" name="bairro" id="bairro" placeholder="Bairro" />
                 </InputLabel>
                 <InputLabel htmlFor="cidade">
-                  <input type="text" id="cidade" placeholder="Cidade" />
+                  <input
+                   {...register("cidade")} type="text" name="cidade" id="cidade" placeholder="Cidade" />
                 </InputLabel>
                 <InputLabel htmlFor="uf">
-                  <input type="text" id="uf" placeholder="UF" />
+                  <input
+                   {...register("uf")} type="text" name="uf" id="uf" placeholder="UF" />
                 </InputLabel>
               </AddressInfoGrid>
             </InnerFormContainer>
@@ -107,6 +144,7 @@ export const Checkout = () => {
                 </RadioLabel>
               </RadioGroupGrid>
             </InnerFormContainer>
+            <button type="submit">Enviar</button>
           </CheckoutForm>
         </div>
         <div>
@@ -128,7 +166,7 @@ export const Checkout = () => {
                 Total <span>{formatCurrency(finalCost)}</span>
               </strong>
             </div>
-            <DefaultButton type="submit">Confirmar pedido</DefaultButton>
+            <DefaultButton>Confirmar pedido</DefaultButton>
           </ConfirmPaymentForm>
         </div>
       </Container>

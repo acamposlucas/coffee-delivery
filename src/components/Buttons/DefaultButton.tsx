@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 
-export const DefaultButton = ({ children }: { children: ReactNode }) => {
-  return <Button>{children}</Button>;
+export const DefaultButton = ({ children }: { children: ReactNode, onClick: any }) => {
+  return <Button type="button">{children}</Button>;
 };
 
 const Button = styled.button`
