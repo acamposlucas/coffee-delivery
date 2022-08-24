@@ -3,8 +3,11 @@ import { MapPin } from "phosphor-react";
 import Logo from "../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "./ShoppingCart";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export const Header = () => {
+  const { cartQuantity } = useShoppingCart();
+
   return (
     <header>
       <HeaderContainer>
@@ -16,7 +19,13 @@ export const Header = () => {
             <MapPin size={22} weight="fill" />
             Porto Alegre, RS
           </span>
-          <ShoppingCart />
+          {
+            cartQuantity > 0 ? (
+              <ShoppingCart />
+            ) : (
+              null
+            )
+          }
         </div>
       </HeaderContainer>
     </header>

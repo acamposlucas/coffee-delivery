@@ -30,7 +30,7 @@ export const Card = ({
       <div className="container">
         <div className="tags">
           {tags.map((tag) => (
-            <span className="tag" aria-hidden="true">{tag}</span>
+            <span key={tag} className="tag" aria-hidden="true">{tag}</span>
           ))}
         </div>
         <div>

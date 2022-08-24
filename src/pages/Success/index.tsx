@@ -18,15 +18,11 @@ export const Success = () => {
       break;
   }
   
-
-
   return (
     <main>
       <Container>
-
-          <h2>Uhu! Pedido confirmado</h2>
-          <p>Agora é só aguardar que logo o café chegará até você</p>
-
+        <h2>Uhu! Pedido confirmado</h2>
+        <p>Agora é só aguardar que logo o café chegará até você</p>
         <section>
           <DeliveryStatus>
             <article>
@@ -35,7 +31,7 @@ export const Success = () => {
               </IconContainer>
               <p>
                 Entrega em <strong>
-                  {`${formData.rua}, ${formData.numero}${formData.complemento ? `, ${formData.complemento}` : null}`}
+                  {`${formData.rua}, ${formData.numero}${formData.complemento ? `, ${formData.complemento}` : ''}`}
                   </strong>{" "}
                 <br />
                 {`${formData.bairro} - ${formData.cidade}, ${formData.uf}`}

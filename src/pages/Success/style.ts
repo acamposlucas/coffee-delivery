@@ -23,18 +23,6 @@ export const Container = styled.section`
   }
 `;
 
-
-// export const IconContainer = styled.div`
-//   align-items: center;
-//   border-radius: 32px;
-//   display: flex;
-//   justify-content: center;
-//   height: 32px;
-//   width: 32px;
-
-//   background-color: ${(props) => props.theme.colors["purple-500"]};
-// `;
-
 export const DeliveryStatus = styled.div`
   background-color: ${props => props.theme.colors["gray-100"]};
   display: flex;
@@ -63,7 +51,8 @@ export const DeliveryStatus = styled.div`
 
   article {
     align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 0.75rem;
     color: ${props => props.theme.colors["black-700"]};
 
@@ -84,7 +73,6 @@ export const DeliveryStatus = styled.div`
         background-color: ${props => props.theme.colors["yellow-700"]};
       }
     }
-
 
     p {
       strong {

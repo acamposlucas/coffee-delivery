@@ -124,14 +124,6 @@ createServer({
     this.urlPrefix = "http://localhost:5173/";
     this.namespace = "api";
 
-    // this.post("/coffees", (schema, request) => {
-    //   let attrs = JSON.parse(request.requestBody);
-    //   attrs.id = coffees.length + 1;
-    //   coffees.push(attrs);
-
-    //   return { coffee: attrs };
-    // });
-
     this.get("/coffees", () => {
       return {
         coffees,
