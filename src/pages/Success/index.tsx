@@ -1,8 +1,25 @@
 import { Clock, CurrencyDollar, MapPin } from "phosphor-react";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { IconContainer } from "../../styles/components/IconContainer";
 import { Container, DeliveryStatus } from "./style";
 
 export const Success = () => {
+  const { formData } = useShoppingCart();
+  let metodoPagamento;
+  switch (formData.metodoPagamento) {
+    case 'debito':
+      metodoPagamento = `Cartão de Débito`;
+      break;
+    case 'credito':
+      metodoPagamento = `Cartão de Crédito`;
+      break;
+    case 'dinheiro':
+      metodoPagamento = `Dinheiro`;
+      break;
+  }
+  
+
+
   return (
     <main>
       <Container>
@@ -17,9 +34,11 @@ export const Success = () => {
                 <MapPin size={16} weight="fill" color="#ffffff" />
               </IconContainer>
               <p>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>{" "}
+                Entrega em <strong>
+                  {`${formData.rua}, ${formData.numero}${formData.complemento ? `, ${formData.complemento}` : null}`}
+                  </strong>{" "}
                 <br />
-                Farrapos - Porto Alegre, RS
+                {`${formData.bairro} - ${formData.cidade}, ${formData.uf}`}
               </p>
             </article>
             <article>
@@ -38,7 +57,7 @@ export const Success = () => {
               </IconContainer>
               <p>
                 Pagamento na entrega <br />
-                <strong>Cartão de crédito</strong>
+                <strong>{metodoPagamento}</strong>
               </p>
             </article>
           </DeliveryStatus>

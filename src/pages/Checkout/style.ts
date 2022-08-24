@@ -101,7 +101,6 @@ export const RadioLabel = styled.label`
 
   input[type="radio"] {
     appearance: none;
-    width: 100%;
   }
 
   span {

@@ -5,7 +5,6 @@ import {
   MapPinLine,
   Money,
 } from "phosphor-react";
-import { DefaultButton } from "../../components/Buttons/DefaultButton";
 import { CartCard } from "../../components/CartCard/";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { CheckoutTitle } from "../../styles/helpers";
@@ -25,6 +24,7 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   cep: yup.string().required(),
@@ -48,7 +48,8 @@ interface IFormInputs {
 }
 
 export const Checkout = () => {
-  const { cartItems, coffees } = useShoppingCart();
+  const { cartItems, coffees, formData, setFormData } = useShoppingCart();
+  let navigate = useNavigate();
 
   const totalItemsCost = 
     cartItems.reduce((total, cartItem) => {
@@ -63,7 +64,8 @@ export const Checkout = () => {
   });
 
   const handleSubmitForm = (data: IFormInputs) => {
-    console.log(data);
+    setFormData(data);
+    navigate('/success');
   }
 
   return (

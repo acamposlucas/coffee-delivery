@@ -8,14 +8,27 @@ type ShoppingCartContext = {
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
+  setFormData: any;
   cartQuantity: number;
   cartItems: CartItem[];
   coffees: Coffee[];
+  formData: IFormData;
 };
 
 type CartItem = {
   id: number;
   quantity: number;
+}
+
+interface IFormData {
+  cep: number | undefined,
+  rua: string | undefined,
+  numero: number | undefined,
+  complemento: string | undefined,
+  bairro: string | undefined,
+  cidade: string | undefined,
+  uf: string | undefined,
+  metodoPagamento: string | undefined,
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
@@ -27,6 +40,16 @@ export function useShoppingCart() {
 export function ShoppingCartProvider({ children }: { children: ReactNode}) {
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("shopping-cart",[]);
   
+  const [formData, setFormData] = useState<IFormData>({
+    cep: undefined,
+    rua: undefined,
+    numero: undefined,
+    complemento: undefined,
+    bairro: undefined,
+    cidade: undefined,
+    uf: undefined,
+    metodoPagamento: undefined,
+  });
   
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
@@ -83,7 +106,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode}) {
   }
 
   return (
-    <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, coffees }}>
+    <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, coffees, formData, setFormData }}>
       {children}
     </ShoppingCartContext.Provider>
   )
