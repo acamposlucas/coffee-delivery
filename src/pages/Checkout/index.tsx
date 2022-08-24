@@ -20,6 +20,7 @@ import {
   InnerFormContainer,
   RadioGroupGrid,
   RadioLabel,
+  ConfirmButton,
 } from "./style";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -43,6 +44,7 @@ interface IFormInputs {
   bairro: string,
   cidade: string,
   uf: string,
+  metodoPagamento: string,
 }
 
 export const Checkout = () => {
@@ -69,7 +71,7 @@ export const Checkout = () => {
       <Container>
         <div>
           <CheckoutTitle>Complete seu pedido</CheckoutTitle>
-          <CheckoutForm onSubmit={handleSubmit(handleSubmitForm)}>
+          <CheckoutForm id="CheckoutForm" onSubmit={handleSubmit(handleSubmitForm)}>
             <InnerFormContainer role="group" aria-label="endereço">
               <FormHeader>
                 <MapPinLine size={22} color="#C47F17" />
@@ -128,23 +130,22 @@ export const Checkout = () => {
               </FormHeader>
               <RadioGroupGrid>
                 <RadioLabel id="credito">
-                  <input type="radio" name="metodoPagamento" id="credito" />
+                  <input {...register("metodoPagamento")} type="radio" name="metodoPagamento" id="credito" value="credito" />
                   <CreditCard size={16} color="#8047F8" />
                   <span>Cartão de crédito</span>
                 </RadioLabel>
                 <RadioLabel id="debito">
-                  <input type="radio" name="metodoPagamento" id="debito" />
+                  <input {...register("metodoPagamento")} type="radio" name="metodoPagamento" id="debito" value="debito" />
                   <Bank size={16} color="#8047F8" />
                   <span>Cartão de débito</span>
                 </RadioLabel>
                 <RadioLabel id="dinheiro">
-                  <input type="radio" name="metodoPagamento" id="dinheiro" />
+                  <input {...register("metodoPagamento")} type="radio" name="metodoPagamento" id="dinheiro" value="dinheiro" />
                   <Money size={16} color="#8047F8" />
                   <span>Dinheiro</span>
                 </RadioLabel>
               </RadioGroupGrid>
             </InnerFormContainer>
-            <button type="submit">Enviar</button>
           </CheckoutForm>
         </div>
         <div>
@@ -166,7 +167,7 @@ export const Checkout = () => {
                 Total <span>{formatCurrency(finalCost)}</span>
               </strong>
             </div>
-            <DefaultButton>Confirmar pedido</DefaultButton>
+            <ConfirmButton type="submit" form="CheckoutForm">Confirmar pedido</ConfirmButton>
           </ConfirmPaymentForm>
         </div>
       </Container>

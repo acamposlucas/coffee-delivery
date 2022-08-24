@@ -101,6 +101,7 @@ export const RadioLabel = styled.label`
 
   input[type="radio"] {
     appearance: none;
+    width: 100%;
   }
 
   span {
@@ -183,5 +184,26 @@ export const ConfirmPaymentForm = styled(BaseForm)`
       font-weight: ${(props) => props.theme.fontWeight.bold};
       justify-content: space-between;
     }
+  }
+`;
+
+export const ConfirmButton = styled.button`
+  align-items: center;
+  background-color: ${(props) => props.theme.colors["yellow-400"]};
+  border: 0;
+  border-radius: 6px;
+  color: ${(props) => props.theme.colors.white};
+  font-size: ${(props) => props.theme.fontSize.sm};
+  font-weight: ${(props) => props.theme.fontWeight.bold};
+  display: flex;
+  height: 48px;
+  line-height: 48px;
+  justify-content: center;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease-in;
+  width: 100%;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors["yellow-700"]};
   }
 `;
