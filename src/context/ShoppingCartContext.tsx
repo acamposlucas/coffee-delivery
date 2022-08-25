@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { Coffee } from "../interfaces/ICoffee";
-
+import data from "../../data.json";
 
 type ShoppingCartContext = {
   getItemQuantity: (id: number) => number;
@@ -54,10 +54,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode}) {
   const [coffees, setCoffees] = useState<Coffee[]>([]);
 
   useEffect(() => {
-    fetch("/api/coffees")
-      .then((res) => res.json())
-      .then((data) => setCoffees(data.coffees))
-      .catch((err) => console.log(err));
+    setCoffees(data);
   }, []);
 
   const cartQuantity = cartItems.reduce(
