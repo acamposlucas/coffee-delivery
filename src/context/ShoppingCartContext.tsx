@@ -8,6 +8,7 @@ type ShoppingCartContext = {
   increaseCartQuantity: (id: number) => void;
   decreaseCartQuantity: (id: number) => void;
   removeFromCart: (id: number) => void;
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
   setFormData: any;
   cartQuantity: number;
   cartItems: CartItem[];
@@ -103,7 +104,7 @@ export function ShoppingCartProvider({ children }: { children: ReactNode}) {
   }
 
   return (
-    <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, coffees, formData, setFormData }}>
+    <ShoppingCartContext.Provider value={{ getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart, cartItems, cartQuantity, coffees, formData, setFormData, setCartItems }}>
       {children}
     </ShoppingCartContext.Provider>
   )

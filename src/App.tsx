@@ -4,7 +4,6 @@ import { defaultTheme } from "./styles/themes/default";
 import { Header } from "./components/Header";
 import { Index } from "./pages/Index";
 import { Route, Routes } from "react-router-dom";
-import "./miragejs";
 import { Checkout } from "./pages/Checkout";
 import { Success } from "./pages/Success";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";

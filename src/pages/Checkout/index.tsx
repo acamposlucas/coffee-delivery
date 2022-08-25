@@ -48,8 +48,12 @@ interface IFormInputs {
 }
 
 export const Checkout = () => {
-  const { cartItems, coffees, formData, setFormData } = useShoppingCart();
   let navigate = useNavigate();
+  const { cartItems, coffees, setCartItems, setFormData } = useShoppingCart();
+
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
+    resolver: yupResolver(schema),
+  });
 
   const totalItemsCost = 
     cartItems.reduce((total, cartItem) => {
@@ -59,12 +63,9 @@ export const Checkout = () => {
   const DELIVERY_COST = 3;
   const finalCost = totalItemsCost + DELIVERY_COST;
 
-  const { register, handleSubmit, formState: { errors } } = useForm<IFormInputs>({
-    resolver: yupResolver(schema),
-  });
-
   const handleSubmitForm = (data: IFormInputs) => {
     setFormData(data);
+    setCartItems([]);
     navigate('/success');
   }
 
