@@ -77,7 +77,8 @@ const CardContainer = styled.li`
   padding-inline: 1.25rem;
   position: relative;
   height: 310px;
-  width: 256px;
+  width: 100%;
+  max-width: 368px;
 
   img {
     aspect-ratio: 1;
