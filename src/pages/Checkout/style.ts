@@ -1,48 +1,118 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
   padding-block: 2.5rem;
-  max-width: var(--maxWidth);
+  width: 90%;
+  margin-inline: auto;
+
+  @media (min-width: 1440px) {
+    grid-template-columns: repeat(2, auto);
+  }
+
 `;
 
 const BaseForm = styled.form`
   box-sizing: border-box;
-  width: 40rem;
 `;
 
 export const AddressInfoGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  @media (min-width: 1440px) {
+    grid-template-columns: repeat(12, 1fr);
+  }
 
   label[for="cep"] {
     grid-column: span 5;
+
+    @media (min-width: 1024px) {
+      grid-column: span 8;
+    }
+
+    @media (min-width: 1440px) {
+      grid-column: span 12;
+    }
   }
 
   label[for="rua"] {
-    grid-column: span 12;
+    grid-column: span 5;
+
+    @media (min-width: 1024px) {
+      grid-column: span 8;
+    }
+    
+    @media (min-width: 1440px) {
+     grid-column: span 12; 
+    }
   }
 
   label[for="numero"] {
-    grid-column: span 4;
+    grid-column: span 5;
+
+    @media (min-width: 1024px) {
+      grid-column: span 3;
+    }
+
+    @media (min-width: 1440px) {
+     grid-column: span 4; 
+    }
   }
 
   label[for="complemento"] {
-    grid-column: span 8;
+    grid-column: span 5;
+
+    @media (min-width: 1024px) {
+      grid-column: span 5;
+    }
+
+    @media (min-width: 1440px) {
+     grid-column: span 8; 
+    }
   }
 
   label[for="bairro"] {
-    grid-column: span 4;
+    grid-column: span 5;
+
+    @media (min-width: 1024px) {
+      grid-column: span 3;
+    }
+
+    @media (min-width: 1440px) {
+     grid-column: span 3; 
+    }
   }
 
   label[for="cidade"] {
-    grid-column: span 6;
+    grid-column: span 5;
+
+    @media (min-width: 1024px) {
+      grid-column: span 3;
+    }
+
+    @media (min-width: 1440px) {
+     grid-column: span 6; 
+    }
   }
 
   label[for="uf"] {
-    grid-column: span 2;
+    grid-column: span 5;
+
+    @media (min-width: 1024px) {
+      grid-column: span 2;
+    }
+
+    @media (min-width: 1440px) {
+     grid-column: span 3; 
+    }
   }
 `;
 

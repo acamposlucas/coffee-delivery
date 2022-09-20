@@ -37,9 +37,9 @@ const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding-block: 2rem;
-  padding-inline: 1rem;
   margin-inline: auto;
   max-width: var(--maxWidth);
+  width: 90%;
 
   .inner-container {
     align-items: center;

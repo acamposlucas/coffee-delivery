@@ -25,6 +25,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { Heading } from "../../styles/components/Typography";
 
 const schema = yup.object().shape({
   cep: yup.string().required(),
@@ -73,7 +74,7 @@ export const Checkout = () => {
     <main>
       <Container>
         <div>
-          <CheckoutTitle>Complete seu pedido</CheckoutTitle>
+          <Heading level={2} textColor={"black-900"} size={"lg"} weight={"bold"}>Complete seu pedido</Heading>
           <CheckoutForm id="CheckoutForm" onSubmit={handleSubmit(handleSubmitForm)}>
             <InnerFormContainer role="group" aria-label="endereço">
               <FormHeader>
@@ -152,7 +153,7 @@ export const Checkout = () => {
           </CheckoutForm>
         </div>
         <div>
-          <CheckoutTitle>Cafés selecionados</CheckoutTitle>
+          <Heading level={2} textColor={"black-900"} size={"lg"} weight={"bold"}>Cafés selecionados</Heading>
           <ConfirmPaymentForm>
             <ul>
               {cartItems.map((item) => (
